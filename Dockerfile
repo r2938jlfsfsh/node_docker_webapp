@@ -14,9 +14,13 @@ RUN rm package-lock.json
 RUN npm install
 #RUN ln -s "$( which node )" /usr/bin/node
 
-RUN mkdir -p /home/rd/WebstormProjects/db
+WORKDIR /usr/src/app/node_kafka_web/db
+RUN tar --gunzip -xvf sqllite.db.tar.gz
+
+WORKDIR /usr/src/app/node_kafka_web
 
 EXPOSE 3000
+EXPOSE 3001
 
 CMD ["node", "server.js"]
 
